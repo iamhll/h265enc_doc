@@ -11,6 +11,8 @@ Welcome to h265enc's documentation!
     :caption: Contents:
 
     introduction/main
+    coding_style/main
+    template/main
 
 
 Indices and tables
