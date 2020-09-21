@@ -16,6 +16,9 @@ Welcome to h265enc's documentation!
     script_usage/main
     coding_style/main
     template/main
+    structure/main
+    check_list/main
+    how_to/main
 
 
 Indices and tables
