@@ -11,6 +11,9 @@ Welcome to h265enc's documentation!
     :caption: Contents:
 
     introduction/main
+    before_everything/main
+    version_control/main
+    script_usage/main
     coding_style/main
     template/main
 
