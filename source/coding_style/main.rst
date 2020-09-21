@@ -1,14 +1,18 @@
 .. -----------------------------------------------------------------------------
-  ..
-  ..  Filename       : main.rst
-  ..  Author         : Huang Leilei
-  ..  Created        : 2020-07-12
-  ..  Description    : coding style related documents
-  ..
+    ..
+    ..  Filename       : main.rst
+    ..  Author         : Huang Leilei
+    ..  Created        : 2020-07-12
+    ..  Description    : coding style related documents
+    ..
 .. -----------------------------------------------------------------------------
 
 Coding Style
 ============
+
+(20200921) Basic Rules
+----------------------
+
 
 #.  Indentation
 
@@ -107,11 +111,12 @@ Coding Style
         _d?_r, sequential logic in stage ?
 
         val_, valid
+        flg_, flag
         num_, number
         cnt_, counter
         idx_, index
+        enm_, enumerator
         dat_, data
-        flg_, flag
 
         gvIdx, index in generation block 
         lpIdx, index in for loop
