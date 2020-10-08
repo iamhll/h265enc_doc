@@ -78,8 +78,9 @@ Check List
         |         |           |                                             | | (G for global, L for local, S for system)                                                         |
         +---------+-----------+---------------------------------------------+-----------------------------------------------------------------------------------------------------+
 
+    \
 
-(20200922) SRC and SIM Status
+(20201008) SRC and SIM Status
 -----------------------------
 
     .. table:: **SRC**
@@ -91,6 +92,10 @@ Check List
         +=============+==================+==================+==============+
         | enc_rmd_top | syn/20200914 + 3 | syn/20200914     | Synchronized |
         +-------------+------------------+------------------+--------------+
+        | enc_ime_top | syn/20200914 + 3 | syn/20200914     | Synchronized |
+        +-------------+------------------+------------------+--------------+
+        | enc_fme_top | syn/20200914 + 3 | syn/20200914     | Synchronized |
+        +-------------+------------------+------------------+--------------+
 
     \
 
@@ -98,16 +103,34 @@ Check List
         :align: left
         :widths: auto
 
-        +-------------+------------------+-------------+------------------+--------------+
-        | Module      | Version          | Check Point | Checker          | Status       |
-        +=============+==================+=============+==================+==============+
-        | enc_rmd_top | syn/20200914 + 3 | ram_mod_wr  | CHKO_RMD_TOP_MOD | Synchronized |
-        +-------------+------------------+-------------+------------------+--------------+
+        +-------------+------------------+----------------+----------------------+-----------------+
+        | Module      | Version          | Check Point    | Checker              | Status          |
+        +=============+==================+================+======================+=================+
+        | enc_rmd_top | syn/20200914 + 3 | ram_mod_wr     | CHKO_RMD_TOP_MOD     | Synchronized    |
+        +-------------+------------------+----------------+----------------------+-----------------+
+        | enc_ime_top | syn/20200914 + 3 | ram_imv_wr     | CHKO_IME_TOP_IMV     | Synchronized    |
+        |             |                  +----------------+----------------------+-----------------+
+        |             |                  | fdb_flg_iip    | CHKO_IME_TOP_FLG_IIP | **Out of Sync** |
+        |             |                  +----------------+----------------------+-----------------+
+        |             |                  | fdb_dat_prt    | CHKO_IME_TOP_PRT     | **Out of Sync** |
+        |             |                  +----------------+----------------------+-----------------+
+        |             |                  | fdb_dat_qp     | CHKO_IME_TOP_QP      | **Out of Sync** |
+        |             |                  +----------------+----------------------+-----------------+
+        |             |                  | fdb_dat_sam    | **None**             | **Out of Sync** |
+        |             |                  +----------------+----------------------+-----------------+
+        |             |                  | fdb_dat_mad    | **None**             | **Out of Sync** |
+        +-------------+------------------+----------------+----------------------+-----------------+
+        | enc_fme_top | syn/20200914 + 3 | ram_fmv_out_wr | CHKO_FME_TOP_FMV     | Synchronized    |
+        |             |                  +----------------+----------------------+-----------------+
+        |             |                  | ram_pre_lu_wr  | CHKO_FME_TOP_PRE_LU  | Synchronized    |
+        |             |                  +----------------+----------------------+-----------------+
+        |             |                  | ram_pre_ch_wr  | CHKO_FME_TOP_PRE_CH  | Synchronized    |
+        +-------------+------------------+----------------+----------------------+-----------------+
 
     \
 
 
-(20200922) Flow Status
+(20201008) Flow Status
 ----------------------
 
     .. table:: **check**
@@ -119,16 +142,10 @@ Check List
         +=============+==================+===============+==============+===========+=======+====================+
         | enc_rmd_top | syn/20200914 + 3 | pass          | pass         | pass      | pass  | **partially pass** |
         +-------------+------------------+---------------+--------------+-----------+-------+--------------------+
-
-    \
-
-    spyglass check of enc_rmd_top:
-    2 "Av_range01" warnings are reported, but it's okay, because if cfg_num_mod_i is configured correctly, cnt_mod_d1_r and cnt_mod_d2_r will not be larger than 12.
-
-    ::
-
-        Array bound violation observed for cnt_mod_d1_r = 13 for dimension 1 of variable dat_buf_r where allowed range is [12:0] (Hier:enc_rmd_top.enc_rmd_cst.encRmdCstCore[0].core).
-        Array bound violation observed for cnt_mod_d2_r = 13 for dimension 1 of variable dat_buf_r where allowed range is [12:0] (Hier:enc_rmd_top.enc_rmd_cst.encRmdCstCore[0].core).
+        | enc_ime_top | syn/20200914 + 3 | pass          | pass         | pass      | pass  | **partially pass** |
+        +-------------+------------------+---------------+--------------+-----------+-------+--------------------+
+        | enc_fme_top | syn/20200914 + 3 | pass          | pass         | pass      | pass  | **partially pass** |
+        +-------------+------------------+---------------+--------------+-----------+-------+--------------------+
 
     \
 
@@ -145,6 +162,10 @@ Check List
         +-------------+------------------+------+---------+-----+---------+-----+---------+
         | enc_rmd_top | syn/20200914 + 3 | pass | \-      | \-  | \-      | pass| pass    |
         +-------------+------------------+------+---------+-----+---------+-----+---------+
+        | enc_ime_top | syn/20200914 + 3 | pass | \-      | \-  | \-      | pass| pass    |
+        +-------------+------------------+------+---------+-----+---------+-----+---------+
+        | enc_fme_top | syn/20200914 + 3 | pass | \-      | \-  | \-      | pass| pass    |
+        +-------------+------------------+------+---------+-----+---------+-----+---------+
 
     \
 
@@ -152,11 +173,65 @@ Check List
         :align: left
         :widths: auto
 
-        +-------------+------------------+---------+-------------------------+--------------+---------------------------------------------------------------------------------------------------+
-        | Module      | Version          | Quartus | Vivado @ 150M           | DC @ 100M    | DC @ 500M                                                                                         |
-        +=============+==================+=========+=========+=======+=======+==============+========+==============+=========================================+========+==============+=========+
-        | \                              | report  | report  | area  | slack | logic        | report | logic        | memory                                  | slack  | clock gating | power   |
-        |                                |         |         | (LUT) | (ns)  | (um^2)       |        | (um^2)       | (bit)                                   | (ns)   | (%)          | (mW)    |
-        +-------------+------------------+---------+---------+-------+-------+--------------+--------+--------------+-----------------------------------------+--------+--------------+---------+
-        | enc_rmd_top | syn/20200914 + 3 | pass    | pass    | 31972 | 1.176 | 76105.691178 | pass   | 86436.674022 | NUMB_BNK x SIZE_FRA_X/4 x DATA_PXL_WDx4 | 0.00   | 99.07        | 40.0622 |
-        +-------------+------------------+---------+---------+-------+-------+--------------+--------+--------------+-----------------------------------------+--------+--------------+---------+
+        +-------------+------------------+---------+--------------------------+-------------------+----------------------------------------------------------------------------------------------------------------+
+        | Module      | Version          | Quartus | Vivado @ 150M            | DC @ 100M         | DC @ 500M                                                                                                      |
+        +=============+==================+=========+=========+=======+========+===================+========+===================+================================================+========+==============+==========+
+        | \                              | report  | report  | area  | slack  | logic             | report | logic             | memory                                         | slack  | clock gating | power    |
+        |                                |         |         | (LUT) | (ns)   | (um^2)            |        | (um^2)            | (bit)                                          | (ns)   | (%)          | (mW)     |
+        +-------------+------------------+---------+---------+-------+--------+-------------------+--------+-------------------+------------------------------------------------+--------+--------------+----------+
+        | enc_rmd_top | syn/20200914 + 3 | pass    | pass    | 31972 |  1.176 | 076105.691178     | pass   | 086436.674022     | NUMB_BNK x SIZE_FRA_X/4 x DATA_PXL_WDx4        | 0.00   | 99.07        | 40.0622  |
+        +-------------+------------------+---------+---------+-------+--------+-------------------+--------+-------------------+------------------------------------------------+--------+--------------+----------+
+        | enc_ime_top | syn/20200914 + 3 | pass    | pass    | 38418 |  1.270 | 181110.848368     | pass   | 188418.317291     | NUMB_BNK x SIZE_S_W_X x DATA_PXL_WDxSIZE_S_W_Y | 0.00   | 99.55        | 197.0432 |
+        +-------------+------------------+---------+---------+-------+--------+-------------------+--------+-------------------+------------------------------------------------+--------+--------------+----------+
+        | enc_fme_top | syn/20200914 + 3 | pass    | pass    | 39122 | -2.683 | **144087.721395** | pass   | **192376.897133** | NUMB_BNK x SIZE_FRA_X/8 x 1+DATA_FMV_WD        | 0.00   | 98.28        | 24.5931  |
+        +-------------+------------------+---------+---------+-------+--------+-------------------+--------+-------------------+------------------------------------------------+--------+--------------+----------+
+
+    \
+
+    spyglass check of enc_rmd_top (syn/20200914 + 3):
+
+    *   2 "Av_range01" warnings are reported
+
+        ::
+
+            Av_range01 @ ../../src/enc/enc_knl/enc_rmd/enc_rmd_cst_knl.v:319
+            description: Array bound violation observed for cnt_mod_d1_r = 13 for dimension 1 of variable dat_buf_r where allowed range is [12:0] (Hier:enc_rmd_top.enc_rmd_cst.\encRmdCstKnl[0].knl ).
+            code       :   assign dat_pre_d1_w = dat_buf_r[cnt_mod_d1_r] ;
+
+            Av_range01 @ ../../src/enc/enc_knl/enc_rmd/enc_rmd_cst_knl.v:365
+            description: Array bound violation observed for cnt_mod_d2_r = 13 for dimension 1 of variable dat_buf_r where allowed range is [12:0] (Hier:enc_rmd_top.enc_rmd_cst.\encRmdCstKnl[0].knl ).
+            code       :   assign dat_o = dat_buf_r[cnt_mod_d2_r] ;
+
+    spyglass check of enc_ime_top (syn/20200914 + 3):
+
+    *   3 "Av_deadcode01" warnings are reported
+
+        ::
+
+            Av_deadcode01 @ ../../src/enc/enc_knl/enc_ime/enc_ime_ref_ver.v:473
+            description: Dead code exists as condition is always false[hier: enc_ime_ref_ver_get_ref]
+            code       :         7'd64 : ref_o = ref_i >> (`IME_DATA_PXL_WD*(NUMB_PXL_INP-NUMB_PXL_OUT-'d64)) ;
+
+            Av_deadcode01 @ ../../src/enc/enc_knl/enc_ime/enc_ime_adr.v:682
+            description: Dead code exists as condition is always false[hier: enc_ime_adr_cst_imv]
+            code       :         8'b1???_???? :    bit_imv_x_w = 'd21 ;
+
+            Av_deadcode01 @ ../../src/enc/enc_knl/enc_ime/enc_ime_adr.v:697
+            description: Dead code exists as condition is always false[hier: enc_ime_adr_cst_imv]
+            code       :         7'b1??_???? :    bit_imv_y_w = 'd19 ;
+
+    spyglass check of enc_fme_top (syn/20200914 + 3):
+
+    *   2 "Av_range01" warnings are reported
+
+        ::
+
+            Av_range01 @ ../../src/common/sram_tp_reg_based.v:72
+            description: Array bound violation observed for \ramEncRdoRecTsps[0].buf_wr_adr_r  = 0 for dimension 1 of variable mem_array (Hier:enc_fme_top.enc_fme_pre_lu.enc_fme_tsps_even.\ramEncRdoRecTsps[0].ram_enc_fme_tsps ).
+            code       :       mem_array[wr_adr_i] <= wr_dat_i ;
+
+            Av_range01 @ ../../src/common/sram_tp_reg_based.v:92
+            description: Array bound violation observed for \ramEncRdoRecTsps[0].buf_rd_adr_r  = 0 for dimension 1 of variable mem_array (Hier:enc_fme_top.enc_fme_pre_ch.enc_fme_tsps_even.\ramEncRdoRecTsps[0].ram_enc_fme_tsps ).
+            code       :       rd_dat_r <= mem_array[rd_adr_i] ;
+
+    \
