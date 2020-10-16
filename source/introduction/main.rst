@@ -109,14 +109,19 @@ gantt
     :align: left
     :widths: auto
 
-    ============= =============================== ========================================== ============================ ============== =====================
-     Number        Task                            Start Point                                Target Module                Owner          Status
-    ============= =============================== ========================================== ============================ ============== =====================
-     20200910-01   clean codes written by others   update/rtl/001/cleanCodesWrittenByOthers   /rtl/enc/enc_core/enc_rmd/   Huang Leilei   **not started**
-     20200910-01   clean codes written by others   update/rtl/001/cleanCodesWrittenByOthers   /rtl/enc/enc_core/enc_ime/   Huang Leilei   **not started**
-     20200910-01   clean codes written by others   update/rtl/001/cleanCodesWrittenByOthers   /rtl/enc/enc_core/enc_fme/   Huang Leilei   **not started**
-     20200910-01   clean codes written by others   update/rtl/001/cleanCodesWrittenByOthers   /rtl/enc/enc_core/enc_rdo/   Huang Leilei   **not started**
-    ============= =============================== ========================================== ============================ ============== =====================
+    ============= =============================== ========================================== =============================== ============== =================
+     Number        Task                            Start Point                                Target Module                   Owner          Status
+    ============= =============================== ========================================== =============================== ============== =================
+     20200910-??   synchronize HW and SW           update/rtl/001/continueOfSyncHwAndSw       /rtl/enc/enc_knl/enc_ilf/       Hou Bingjing   **not started**
+     20200910-??   synchronize HW and SW           update/rtl/001/continueOfSyncHwAndSw       /rtl/enc/enc_knl/enc_e_c/       Zou Yuliang    **not started**
+     20200910-??   synchronize HW and SW           update/rtl/001/continueOfSyncHwAndSw       /rtl/enc/enc_knl/enc_e_d/       Cai Yujie      **not started**
+     20200910-??   synchronize HW and SW           update/rtl/001/continueOfSyncHwAndSw       /rtl/enc/enc_knl/enc_knl_top/   Huang Leilei   **not started**
+     20200910-??   synchronize HW and SW           update/rtl/001/continueOfSyncHwAndSw       /rtl/enc/enc_knl/enc_top/       Huang Leilei   **not started**
+     20200910-??   clean codes written by others   update/rtl/002/cleanCodesWrittenByOthers   /rtl/enc/enc_knl/enc_rmd/       Huang Leilei   **not started**
+     20200910-??   clean codes written by others   update/rtl/002/cleanCodesWrittenByOthers   /rtl/enc/enc_knl/enc_ime/       Huang Leilei   **not started**
+     20200910-??   clean codes written by others   update/rtl/002/cleanCodesWrittenByOthers   /rtl/enc/enc_knl/enc_fme/       Huang Leilei   **not started**
+     20200910-??   clean codes written by others   update/rtl/002/cleanCodesWrittenByOthers   /rtl/enc/enc_knl/enc_rdo/       Huang Leilei   **not started**
+    ============= =============================== ========================================== =============================== ============== =================
 
 \
 
@@ -133,9 +138,11 @@ gantt
      20200914-01   synchronize HW and SW   update/rtl/000/syncHwAndSw                               /rtl/enc/enc_core/enc_rdo/   Huang Leilei   20200918 - 20200918
      20200914-02   optimize                update/rtl/enc/enc_itf/002/furtherOptimize               /rtl/enc/enc_itf/            Shi ChunXin    **not started**
      20200914-03   optimize                update/rtl/enc/enc_knl/enc_ilf/001/optimizeCodingStyle   /rtl/enc/enc_knl/enc_ilf/    Liu Xun        **not started**
+     20200921-01   relocate and rename     update/000/relocateAndRename                             /                            Huang Leilei   20200921 - 20200921
      20200921-01   relocate and rename     update/000/relocateAndRename                             /rtl/enc/enc_knl/enc_rmd/    Huang Leilei   20200922 - 20200922
      20200921-01   relocate and rename     update/000/relocateAndRename                             /rtl/enc/enc_knl/enc_ime/    Huang Leilei   20201008 - 20201008
      20200921-01   relocate and rename     update/000/relocateAndRename                             /rtl/enc/enc_knl/enc_fme/    Huang Leilei   20201008 - 20201008
+     20200921-01   relocate and rename     update/000/relocateAndRename                             /rtl/enc/enc_knl/enc_rdo/    Huang Leilei   20201015 - 20201015
     ============= ======================= ======================================================== ============================ ============== =====================
 
 \
@@ -167,4 +174,5 @@ gantt
      20200725-02   maintain   master         /ext/           Huang Leilei   20200725 - 20200725
      ...           ...        master         ...             ...
     ============= ========== ============== =============== ============== =====================
+
 \
