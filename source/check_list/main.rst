@@ -206,7 +206,12 @@ Check List
         | enc_rdo_top | syn/20201015 | pass    | pass    | 71122 | -0.420 | **548707.646507** | pass   | **678454.444482** | 152797.522949 | 0.00  | **96.61**    | 24.3888  |
         +-------------+--------------+---------+---------+-------+--------+-------------------+--------+-------------------+---------------+-------+--------------+----------+
 
-    spyglass check of enc_rmd_top (syn/20201015):
+    \
+
+(20201015) Remaining Issues
+---------------------------
+
+*   spyglass check of enc_rmd_top (syn/20201015):
 
     *   2 "Av_range01" warnings are reported
 
@@ -220,7 +225,9 @@ Check List
             description: Array bound violation observed for cnt_mod_d2_r = 13 for dimension 1 of variable dat_buf_r where allowed range is [12:0] (Hier:enc_rmd_top.enc_rmd_cst.\encRmdCstKnl[0].knl ).
             code       :   assign dat_o = dat_buf_r[cnt_mod_d2_r] ;
 
-    spyglass check of enc_ime_top (syn/20201015):
+        \
+
+*   spyglass check of enc_ime_top (syn/20201015):
 
     *   3 "Av_deadcode01" warnings are reported
 
@@ -238,7 +245,9 @@ Check List
             description: Dead code exists as condition is always false[hier: enc_ime_adr_cst_imv]
             code       :         7'b1??_???? :    bit_imv_y_w = 'd19 ;
 
-    spyglass check of enc_fme_top (syn/20201015):
+        \
+
+*   spyglass check of enc_fme_top (syn/20201015):
 
     *   2 "Av_range01" warnings are reported
 
@@ -252,9 +261,9 @@ Check List
             description: Array bound violation observed for \ramEncRdoRecTsps[0].buf_rd_adr_r  = 0 for dimension 1 of variable mem_array (Hier:enc_fme_top.enc_fme_pre_ch.enc_fme_tsps_even.\ramEncRdoRecTsps[0].ram_enc_fme_tsps ).
             code       :       rd_dat_r <= mem_array[rd_adr_i] ;
 
-    \
+        \
 
-    spyglass check of enc_rdo_top (syn/20201015):
+*   spyglass check of enc_rdo_top (syn/20201015):
 
     *   4 "Av_range01" warnings are reported
 
@@ -275,3 +284,24 @@ Check List
             Av_deadcode01 @ ../../src/enc/enc_knl/enc_rdo/enc_rdo_top.v:2326
             description: Dead code exists as condition is always false (reason: static nets in fanin cone) [hier: enc_rdo_top]
             code       :         DATA_SYN_TRV : begin    ram_mod_fnl_enm_chn_o       = TRV_ram_mod_wr_enm_chn_o_w       ;
+
+        \
+
+*   DC synthesis of enc_ime_top (syn/20201015):
+
+    *   logic cost under 500M is almost the same with logic cost under 100M
+
+    \
+
+*   DC synthesis of enc_fme_top (syn/20201015):
+
+    *   logic cost under 500M is 33.5% larger than logic cost under 100M
+
+    \
+
+*   DC synthesis of enc_rdo_top (syn/20201015):
+
+    *   logic cost under 500M is 23.6% larger than logic cost under 100M
+    *   gating ratio is relatively low
+
+    \
